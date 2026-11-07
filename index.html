@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>eGIRT – eGovernance in Real Time</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fafaf8;--card:#fff;--ink:#111;--mut:#6a6a66;--line:#e7e7e2;--g:#111;--gold:#fcdc04;--red:#d90000;--soft:#f3f3ef;--onp:#fff;--chev:%23111}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0c0c0c;--card:#151515;--ink:#f2f2ee;--mut:#9a9a94;--line:#2a2a28;--g:#fcdc04;--soft:#1d1d1b;--onp:#111;--red:#ff4a3d;--chev:%23f2f2ee}}
+:root[data-theme=dark]{--bg:#0c0c0c;--card:#151515;--ink:#f2f2ee;--mut:#9a9a94;--line:#2a2a28;--g:#fcdc04;--soft:#1d1d1b;--onp:#111;--red:#ff4a3d;--chev:%23f2f2ee}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Google Sans","Google Sans Flex","DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+.stripe{height:6px;background:linear-gradient(90deg,#000 0 33.3%,#fcdc04 33.3% 66.6%,#d90000 66.6%)}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 18px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.logo{font-size:26px;font-weight:700;letter-spacing:-.02em;display:block;line-height:1}.logo i{font-style:normal;box-shadow:inset 0 -.32em 0 var(--gold)}
+.tl{font-size:12px;color:var(--mut);display:block;margin-top:4px}
+.ctl{display:flex;gap:10px;flex-wrap:wrap}
+.ctl label{display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--mut);font-weight:500}
+input,select,textarea{font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%;outline:0}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+select{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238a8a85' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center}
+.ctl input,.ctl select{width:150px;border-radius:999px;padding:7px 14px;font-size:14px;color:var(--ink)}.ctl select{padding-right:34px}
+button{font:inherit;color:inherit}
+nav{display:flex;overflow-x:auto;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5;padding:0 10px}
+nav button{flex:1;min-width:84px;padding:13px 10px;border:0;background:none;font-weight:500;color:var(--mut);border-bottom:3px solid transparent;cursor:pointer}
+nav button.on{color:var(--ink);font-weight:700;border-color:var(--gold)}
+main{max-width:760px;margin:0 auto;padding:18px 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:0 0 12px}
+.row{display:flex;gap:12px}.sp{justify-content:space-between;align-items:center}.wrap{flex-wrap:wrap}
+.sup{display:flex;gap:6px;align-items:center;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 14px;cursor:pointer;font-weight:500}.sup.on{background:var(--gold);border-color:var(--gold);color:#111}.sup:disabled{opacity:.5;cursor:default}.hide{background:none;border:0;color:var(--mut);cursor:pointer;font-size:13px;text-decoration:underline}.foot{margin-top:8px;align-items:center}
+.vote{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:44px}
+.vote button{border:1px solid var(--line);background:var(--bg);border-radius:10px;width:38px;height:32px;cursor:pointer;font-size:13px}
+.vote button.up.on{background:var(--gold);border-color:var(--gold);color:#111}.vote button.dn.on{background:var(--red);border-color:var(--red);color:#fff}
+.vote b{font-size:18px}
+.tag{display:inline-block;font-size:12px;background:var(--soft);border:1px solid var(--line);padding:1px 9px;border-radius:999px;margin:2px 4px 2px 0;color:var(--ink)}
+.tag.p{background:var(--gold);border-color:var(--gold);color:#111}.tag.a{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.mut{color:var(--mut);font-size:13px}
+.btn{background:var(--g);color:var(--onp);border:0;border-radius:999px;padding:9px 18px;font-weight:600;cursor:pointer}
+.btn.o{background:none;color:var(--ink);border:1px solid var(--ink)}.btn.r{background:var(--red);color:#fff}.btn:disabled{opacity:.35;cursor:not-allowed}
+h2{font-size:20px;font-weight:700;letter-spacing:-.01em;margin:4px 0 12px}h3{font-size:15px;margin:20px 0 8px}
+label.f{display:block;margin:10px 0 4px;font-weight:500;font-size:13px}
+.bar{height:12px;background:var(--gold);border-radius:999px}
+.sim{border-left:5px solid var(--gold);background:var(--soft)}
+.phone{width:270px;margin:0 auto;background:#000;border-radius:28px;padding:18px 14px;border-bottom:6px solid var(--red)}
+.phone pre{background:#fcdc04;color:#111;font:13px/1.4 ui-monospace,Menlo,monospace;min-height:190px;margin:0 0 10px;padding:10px;white-space:pre-wrap;border-radius:8px}
+.phone .row input{background:#222;border-color:#222;color:#fff}.phone .btn{background:#fcdc04;color:#111}.phone .btn.o{background:none;color:#fcdc04;border-color:#fcdc04}
+.map{width:100%;max-width:420px;display:block;margin:auto;background:var(--soft);border-radius:14px}
+ul.d{padding-left:18px;margin:4px 0}li{margin:3px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--soft)}
+.sup{background:var(--card);border:1.5px solid var(--ink);padding:6px 14px 6px 12px;gap:8px;font-size:14px}.sup:hover:not(:disabled){background:var(--gold);border-color:var(--gold);color:#111}.sup svg{width:16px;height:16px}.sup b{border-left:1.5px solid currentColor;padding-left:8px}.sup.on{background:var(--gold);border-color:var(--gold);color:#111}
+.links{margin-top:8px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}.lk{background:none;border:0;color:var(--mut);cursor:pointer;font-size:13px;padding:0;text-decoration:underline}
+.tag.f{background:var(--red);border-color:var(--red);color:#fff}
+.seg{display:flex;gap:4px;background:var(--soft);padding:4px;border-radius:999px;margin:12px 0}.seg button{flex:1;border:0;background:none;padding:8px 6px;border-radius:999px;cursor:pointer;font-weight:500;color:var(--mut);font-size:13px;line-height:1.2}.seg button.on{background:var(--card);color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.15)}.seg span{background:var(--gold);color:#111;border-radius:999px;padding:0 7px;font-size:11px;margin-left:3px}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;gap:8px;align-items:center;background:var(--gold);color:#111;border:0;border-radius:999px;padding:14px 22px;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.28)}.fab[hidden]{display:none}
+.demo{max-width:760px;margin:0 auto;padding:14px 14px 100px;color:var(--mut);font-size:12px;border-top:1px dashed var(--line)}.demo input{display:inline-block;width:140px;padding:3px 10px;border-radius:999px;font-size:12px;margin:0 4px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}.dg{background:var(--card);border-radius:14px;padding:18px;max-width:380px;width:100%}.dg p{margin:0 0 10px}
+</style></head><body>
+<div class="stripe"></div><header><div><span class="logo">e<i>GIRT</i></span><span class="tl">eGovernance in Real Time</span></div>
+<div class="ctl"><label>Language<select id="lang" aria-label="Language"><option value="en">English</option><option value="lg">Luganda</option><option value="sw">Kiswahili</option></select></label></div></header>
+<nav id="nav"></nav><main id="v"></main><footer class="demo"><b>Prototype demo controls.</b> Acting as citizen <input id="me" value="0772000001" inputmode="tel" aria-label="Demo citizen phone number"> In production this is your OTP-verified SIM number: it enforces one vote per person and decides who owns an issue. On USSD it is detected automatically. Change it here to test voting and confirmations as different people.</footer><button class="fab" id="fab"></button>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const T={en:{issues:"Issues",report:"Report",insights:"Insights",ussd:"USSD",about:"Design",open:"Open",pending:"Awaiting confirmation",archived:"Archived",resolve:"Mark resolved",confirm:"Confirm fixed",dispute:"Not fixed",search:"Search issues"},
+lg:{issues:"Ensonga",report:"Lipoota",insights:"Ebibalo",ussd:"USSD",about:"Enteekateeka",open:"Zikyaliwo",pending:"Zirindiridde okukakasibwa",archived:"Ziterekeddwa",resolve:"Teekako nti kiwedde",confirm:"Kakasa nti kikoleddwa",dispute:"Tekikoleddwa",search:"Noonya ensonga"},
+sw:{issues:"Masuala",report:"Ripoti",insights:"Takwimu",ussd:"USSD",about:"Muundo",open:"Wazi",pending:"Inasubiri uthibitisho",archived:"Zilizohifadhiwa",resolve:"Weka imetatuliwa",confirm:"Thibitisha imerekebishwa",dispute:"Haijarekebishwa",search:"Tafuta masuala"}};
+let lang="en",tab="issues",flt="open",q="",me="0772000001";const t=k=>T[lang][k]||T.en[k];
+const CATS=["Health","Roads","Water","Education","Land & Justice"];
+const DIS={Arua:[55,45],Gulu:[150,45],Lira:[185,95],Mbale:[270,125],Kampala:[205,190],Jinja:[250,185],Kasese:[75,215],Mbarara:[115,265]},DN=Object.keys(DIS);
+let nid=1;const mkv=(u,d)=>{const o={};for(let i=0;i<u;i++)o["077"+(100+i)+"000"]=1;return o};
+const mk=(t,d,c,s,by,u,dn,st="open",extra={})=>({id:nid++,t,d,c,s,by,v:mkv(u,dn),st,note:"",conf:[],...extra});
+let I=[mk("Broken borehole in Kisenyi parish","Only water point for about 300 households has been dry for 2 months.","Water","Kampala","0772000002",24,2),
+mk("Gulu–Awach road impassable in rain","Potholes and flooding cut off trucks carrying produce.","Roads","Gulu","0772000003",31,3),
+mk("No malaria drugs at Kasese HC III","Patients are sent to buy medicine from private pharmacies.","Health","Kasese","0772000004",40,1),
+mk("Teachers absent at Lira primary school","Classes P4–P7 are often unsupervised on Mondays and Fridays.","Education","Lira","0772000005",18,4),
+mk("Land boundary dispute not heard for a year","Case is stuck at the sub-county land committee.","Land & Justice","Mbarara","0772000006",12,2,"open",{fl:["0772000020","0772000021"]}),
+mk("Streetlights off on Mbale market road","Traders are afraid to close late.","Roads","Mbale","0772000001",9,1),
+mk("Maternity ward lacks beds at Arua clinic","Mothers share beds after delivery.","Health","Arua","0772000007",27,0),
+mk("Blocked drainage floods Jinja school","Pupils miss classes after every heavy rain.","Education","Jinja","0772000008",8,1,"pending",{note:"Culvert unblocked on 2 Nov by district engineer.",conf:["0772000009"]}),
+mk("Clinic roof leaking in Mbarara","Roof repaired and verified by the community.","Health","Mbarara","0772000010",14,0,"archived",{note:"Repaired Oct 2026; 2 citizens confirmed.",conf:["0772000011","0772000012"]})];
+const sc=i=>Object.values(i.v).reduce((a,b)=>a+b,0);
+const STOP="the a an of in at on to for is are and with not has have from this that".split(" ");
+const tok=s=>[...new Set(s.toLowerCase().replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(w=>w.length>2&&!STOP.includes(w)).map(w=>w.replace(/s$/,"")))];
+function sim(text,cat){const a=tok(text);if(a.length<2)return[];return I.filter(i=>i.st!="archived").map(i=>{const b=tok(i.t+" "+i.d),n=a.filter(w=>b.includes(w)).length;return{i,n,r:n/a.length+(i.c==cat?.1:0)}}).filter(x=>x.n>=2&&x.r>=.4).sort((x,y)=>y.r-x.r).slice(0,3)}
+const H={},hidd=i=>H[me]&&H[me].has(i.id),hn=()=>H[me]?H[me].size:0;let showH=false;
+function vote(id){const i=I.find(x=>x.id==id);if(i.st=="archived")return;i.v[me]?delete i.v[me]:i.v[me]=1}
+function hideI(id){const h=H[me]||(H[me]=new Set());h.has(id)?h.delete(id):h.add(id);if(!hn())showH=false;draw()}
+function dlg(msg,inp,cb){const d=document.createElement("div");d.className="ov";d.innerHTML=`<div class="dg"><p>${msg}</p>${inp?'<textarea rows="3"></textarea>':""}<div class="row" style="justify-content:flex-end"><button class="btn o" data-x>Cancel</button><button class="btn" data-ok>OK</button></div></div>`;document.body.append(d);const ta=d.querySelector("textarea");d.querySelector("[data-x]").onclick=()=>d.remove();d.querySelector("[data-ok]").onclick=()=>{const v=ta?ta.value.trim():true;if(!v)return;d.remove();cb(v)}}
+function resolve(id){dlg("Describe what was done to fix this (shown publicly):",1,n=>{const i=I.find(x=>x.id==id);i.st="pending";i.note=n;i.conf=[];draw()})}
+function flagCore(i){i.fl=i.fl||[];if(!i.fl.includes(me))i.fl.push(me)}
+function flagI(id){dlg("Flag this issue as misleading? A moderator will review it once several citizens flag it.",0,()=>{flagCore(I.find(x=>x.id==id));draw()})}
+function confirmFix(id,ok){const i=I.find(x=>x.id==id);if(ok){if(!i.conf.includes(me))i.conf.push(me);if(i.conf.length>=2)i.st="archived"}else{i.st="open";i.note="Disputed: "+i.note;i.conf=[]}draw()}
+function card(i,ctx){const m=i.v[me],by=i.anon?"Anonymous":"…"+i.by.slice(-3);let act="";
+if(i.st=="open"&&i.by==me)act=`<button class="btn o" onclick="resolve(${i.id})">${t("resolve")}</button>`;
+if(i.st=="pending"){act=`<div class="mut">Fix claimed: ${esc(i.note)} (${i.conf.length}/2 confirmations)</div>`;
+act+=i.by==me||i.conf.includes(me)?`<div class="mut">Waiting for other citizens to confirm.</div>`:`<div class="row"><button class="btn" onclick="confirmFix(${i.id},1)">${t("confirm")}</button><button class="btn r" onclick="confirmFix(${i.id},0)">${t("dispute")}</button></div>`}
+if(i.st=="archived")act=`<div class="mut">Resolution record: ${esc(i.note)}</div>`;
+const ar=i.st=="archived",hd=hidd(i),fl=i.fl||[],fm=fl.includes(me),rv=fl.length>=3;
+return `<div class="card"><b>${esc(i.t)}</b><div class="mut">${esc(i.d)}</div><div class="mut">Reported by ${by}</div>${rv?`<div class="mut" style="color:var(--red)">Flagged as misleading by several citizens · under moderator review</div>`:""}${act}
+<div class="row sp wrap foot"><div><span class="tag">${i.c}</span><span class="tag">${i.s}</span><span class="tag ${i.st=="pending"?"p":i.st=="archived"?"a":""}">${t(i.st)}</span>${rv?'<span class="tag f">Under review</span>':""}</div>
+<button class="sup ${m?"on":""}" ${ar?"disabled":""} onclick="vote(${i.id});draw()" aria-label="Support this issue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg><span>Support</span><b>${sc(i)}</b></button></div>
+${ar||tab=="report"?"":`<div class="links"><button class="lk" onclick="hideI(${i.id})">${hd?"Unhide":"Hide"}</button>${fm?'<span class="mut">⚑ You flagged this</span>':`<button class="lk" onclick="flagI(${i.id})">⚑ Flag as misleading</button>`}</div>`}</div>`}
+const views={
+issues(){const L=I.filter(i=>i.st==flt&&(!q||(i.t+i.d+i.s+i.c).toLowerCase().includes(q))&&(showH||!hidd(i))).sort((a,b)=>sc(b)-sc(a));
+return `<input id="q" placeholder="${t("search")}" value="${esc(q)}"><div class="seg" role="tablist">${["open","pending","archived"].map(s=>`<button role="tab" class="${s==flt?"on":""}" onclick="flt='${s}';draw()">${t(s)} <span>${I.filter(i=>i.st==s).length}</span></button>`).join("")}</div><p class="mut">Ranked by community support. One vote per verified phone number. Hidden issues are hidden only for you. ${hn()?`<a href="#" style="color:inherit" onclick="showH=!showH;draw();return false">${showH?"Stop showing":"Show"} ${hn()} hidden</a>`:""}</p><div id="list">${L.map(i=>card(i)).join("")||'<p class="mut">No issues here yet.</p>'}</div>`},
+report(){return `<button class="lk" onclick="tab='issues';draw()">← Back to issues</button><h2>Step 1 – Check what is already reported</h2><label class="f">What is the problem? (type a short title)</label><input id="rt" placeholder="e.g. Broken borehole in Kisenyi">
+<div class="row"><div style="flex:1"><label class="f">Category</label><select id="rc">${CATS.map(c=>`<option>${c}</option>`).join("")}</select></div><div style="flex:1"><label class="f">District</label><select id="rd">${DN.map(c=>`<option>${c}</option>`).join("")}</select></div></div>
+<div id="sim"></div><h3>Top open issues in this district</h3><div id="near"></div>
+<label class="f"><input type="checkbox" id="ck" style="width:auto"> I have read the issues above and mine is different</label>
+<button class="btn" id="go" disabled>Continue</button>
+<div id="form" hidden><h2 style="margin-top:16px">Step 2 – Describe it</h2><label class="f">Details</label><textarea id="rx" rows="3"></textarea><label class="f"><input type="checkbox" id="an" style="width:auto"> Hide my number (post anonymously)</label><p class="mut">Only your phone’s last 3 digits are ever shown. No name or ID is collected.</p><button class="btn" id="sub">Submit issue</button></div>`},
+insights(){const op=I.filter(i=>i.st!="archived"),by={};DN.forEach(d=>by[d]=0);op.forEach(i=>by[i.s]+=Math.max(sc(i),0));const mx=Math.max(...Object.values(by),1);
+const cat=CATS.map(c=>[c,op.filter(i=>i.c==c).reduce((a,i)=>a+Math.max(sc(i),0),0)]),cm=Math.max(...cat.map(x=>x[1]),1);
+return `<h2>Heat map – where citizens are asking for action</h2><svg class="map" viewBox="0 0 330 310" role="img" aria-label="Schematic heat map of districts"><path d="M20 70 L90 10 L200 25 L300 90 L310 170 L270 250 L170 300 L60 290 L20 190Z" fill="none" stroke="var(--mut)" stroke-dasharray="4"/>
+${DN.map(d=>{const[x,y]=DIS[d],r=10+28*by[d]/mx,o=.25+.65*by[d]/mx;return `<circle cx="${x}" cy="${y}" r="${r}" fill="#c0392b" opacity="${o}"/><text x="${x}" y="${y+r+11}" font-size="10" text-anchor="middle" fill="var(--ink)">${d} (${by[d]})</text>`}).join("")}</svg>
+<p class="mut">Schematic only – a full build would use real district boundaries (e.g. OpenStreetMap). Bigger, darker circles mean more support.</p>
+<h3>Priority by sector (supporters)</h3>${cat.map(([c,n])=>`<div class="row sp"><span style="width:110px">${c}</span><div style="flex:1"><div class="bar" style="width:${100*n/cm}%"></div></div><b>${n}</b></div>`).join("")}
+<h3>Accountability snapshot</h3><div class="row wrap"><span class="tag">Open ${I.filter(i=>i.st=="open").length}</span><span class="tag p">Awaiting confirmation ${I.filter(i=>i.st=="pending").length}</span><span class="tag a">Archived ${I.filter(i=>i.st=="archived").length}</span><span class="tag f">Under review ${I.filter(i=>(i.fl||[]).length>=3).length}</span></div>
+<h3>Top 3 for the district planning meeting</h3><ol>${op.sort((a,b)=>sc(b)-sc(a)).slice(0,3).map(i=>`<li>${esc(i.t)} – ${i.s} (+${sc(i)})</li>`).join("")}</ol>`},
+ussd(){return `<h2>USSD channel (works on any phone)</h2><p class="mut">Dial <b>*217#</b> (demo code). Uses the same data and the phone number set above. Try: 1, then pick an issue, then 1 to support (2 hides it, 3 flags it) – or 2 to report and type a title like “borehole broken Kisenyi”.</p>
+<div class="phone"><pre id="scr"></pre><div class="row"><input id="ui" placeholder="Reply" aria-label="USSD reply"><button class="btn" id="us">Send</button></div><p style="text-align:center;margin:8px 0 0"><button class="btn o" id="ur" style="background:none">Dial *217#</button></p></div>`},
+about(){return `<h2>Problem</h2><p>Ugandans have no structured, public, trackable way to raise local service-delivery problems or to see whether anyone acted. Barazas, LC meetings and radio shows are episodic and unrecorded; existing channels (e.g. U-Report, the Government Citizen Interaction Centre) do not rank issues by community support, publish status, and work on USSD and in local languages in one place. Planners lack evidence of what matters most, and citizens lose trust.</p>
+<h3>How the design serves e-governance principles</h3><table><tr><th>Principle</th><th>Feature</th></tr><tr><td>Transparency</td><td>Public issues, votes, statuses, heat map</td></tr><tr><td>Accountability</td><td>Resolution notes; fix must be confirmed by 2 citizens before archive; disputes reopen</td></tr><tr><td>Inclusion</td><td>USSD, mobile web, language switch</td></tr><tr><td>Trust</td><td>One vote per SIM-registered number; anonymity option; archive stays viewable; flag misleading reports for moderator review</td></tr><tr><td>Engagement</td><td>Support, report, hide what is not relevant, analytics for planning</td></tr></table>
+<h3>Coded in this prototype</h3><ul class="d"><li>AI-style duplicate detection (keyword overlap) before posting</li><li>Support voting (one per number) and a personal “hide” to ignore issues</li><li>Resolve → confirm → archive workflow</li><li>“Flag as misleading” with automatic moderator review after 3 flags</li><li>Heat map and analytics</li><li>USSD simulator</li><li>Language switch (UI labels)</li></ul>
+<h3>Simulated / not production</h3><ul class="d"><li>Phone verification (real: OTP + SIM registration)</li><li>Duplicate check is a rule-based stand-in for semantic embeddings</li><li>Translation covers UI labels only; Luganda/Kiswahili strings need native-speaker review; a machine translation API would translate issue text</li><li>No backend: data resets on reload</li><li>Compliance: Data Protection and Privacy Act 2019</li></ul>`}};
+function draw(){$("#nav").innerHTML=["issues","insights","ussd","about"].map(k=>`<button class="${k==tab?"on":""}" onclick="tab='${k}';draw()">${t(k)}</button>`).join("");$("#v").innerHTML=views[tab]();wire();const f=$("#fab");f.hidden=tab=="report";f.innerHTML=PLUS+t("report")}
+function wire(){if(tab=="issues"){$("#q").oninput=e=>{q=e.target.value.toLowerCase();$("#list").innerHTML=I.filter(i=>i.st==flt&&(!q||(i.t+i.d+i.s+i.c).toLowerCase().includes(q))&&(showH||!hidd(i))).sort((a,b)=>sc(b)-sc(a)).map(i=>card(i)).join("")}}
+if(tab=="report"){const upd=()=>{const s=sim($("#rt").value,$("#rc").value);$("#sim").innerHTML=s.length?`<div class="card sim"><b>Similar issues found – support one instead?</b></div>`+s.map(x=>card(x.i)).join(""):"";
+$("#near").innerHTML=I.filter(i=>i.st=="open"&&i.s==$("#rd").value).sort((a,b)=>sc(b)-sc(a)).slice(0,3).map(i=>card(i)).join("")||'<p class="mut">Nothing reported here yet.</p>';
+$("#go").disabled=!($("#ck").checked&&tok($("#rt").value).length>=2)};["rt","rc","rd"].forEach(k=>$("#"+k).oninput=upd);$("#ck").onchange=upd;upd();
+$("#go").onclick=()=>$("#form").hidden=false;
+$("#sub").onclick=()=>{const d=$("#rx").value.trim();if(!d)return dlg("Please add some details.",0,()=>{});const i=mk($("#rt").value.trim(),d,$("#rc").value,$("#rd").value,me,0,0);i.anon=$("#an").checked;i.v[me]=1;I.push(i);tab="issues";flt="open";draw()}}
+if(tab=="ussd"){const go=()=>{$("#scr").textContent=ussdScr()};$("#ur").onclick=()=>{U={s:"home"};go()};$("#us").onclick=()=>{ussdStep($("#ui").value);$("#ui").value="";go()};$("#ui").onkeydown=e=>{if(e.key=="Enter")$("#us").click()};go()}}
+let U={s:"home"};const topO=()=>I.filter(i=>i.st=="open"&&!hidd(i)).sort((a,b)=>sc(b)-sc(a)).slice(0,5);
+function ussdScr(){const m=U.msg?U.msg+"\n\n":"";switch(U.s){
+case"home":return m+"eGIRT\n1 Top issues\n2 Report issue\n3 My issues\n0 Exit";
+case"list":return topO().map((i,n)=>`${n+1} ${i.t.slice(0,22)} (${sc(i)})`).join("\n")+"\n0 Back";
+case"act":{const i=I.find(x=>x.id==U.id);return i.t+"\n"+i.s+", "+sc(i)+" supporters\n1 Support\n2 Hide for me\n3 Flag as misleading\n0 Back"}
+case"title":return "Type a short title of the problem:";
+case"dup":return "Similar issue exists:\n"+U.dup.t.slice(0,40)+" ("+sc(U.dup)+")\n1 Support it\n2 Mine is different\n0 Cancel";
+case"cat":return "Category:\n"+CATS.map((c,n)=>`${n+1} ${c}`).join("\n");
+case"dis":return "District:\n"+DN.map((c,n)=>`${n+1} ${c}`).join("\n");
+case"mine":return (I.filter(i=>i.by==me).map(i=>`#${i.id} ${i.t.slice(0,20)} [${i.st}]`).join("\n")||"You have no issues.")+"\n0 Back";
+default:return "Session ended."}}
+function ussdStep(x){x=x.trim();const had=U.msg;U.msg="";const n=parseInt(x);switch(U.s){
+case"home":U.s={1:"list",2:"title",3:"mine",0:"end"}[x]||"home";break;
+case"list":if(x=="0")U.s="home";else if(topO()[n-1]){U.id=topO()[n-1].id;U.s="act"}break;
+case"act":if(n==1||n==2||n==3){if(n==1){if(!I.find(x=>x.id==U.id).v[me])vote(U.id);U.msg="Support recorded."}else if(n==2){hideI(U.id);U.msg="Issue hidden for you."}else{flagCore(I.find(x=>x.id==U.id));U.msg="Flagged for moderator review."}U.s="home"}else U.s="list";break;
+case"title":U.t=x;const s=sim(x,"");if(s.length){U.dup=s[0].i;U.s="dup"}else U.s="cat";break;
+case"dup":if(n==1){vote(U.dup.id,1);U.msg="Thank you. Your vote was added to the existing issue.";U.s="home"}else if(n==2)U.s="cat";else U.s="home";break;
+case"cat":if(CATS[n-1]){U.c=CATS[n-1];U.s="dis"}break;
+case"dis":if(DN[n-1]){const i=mk(U.t,"Reported via USSD","Health",DN[n-1],me,0,0);i.c=U.c;i.v[me]=1;I.push(i);U.msg="Saved. Ref #"+i.id;U.s="home"}break;
+case"mine":U.s="home";break}}
+$("#lang").onchange=e=>{lang=e.target.value;draw()};$("#me").onchange=e=>{me=e.target.value.trim()||me;draw()};const PLUS='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';$("#fab").onclick=()=>{tab="report";scrollTo(0,0);draw()};draw();
+</script></body></html>
